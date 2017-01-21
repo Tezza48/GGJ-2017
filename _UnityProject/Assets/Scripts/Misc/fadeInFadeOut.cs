@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class fadeInFadeOut : MonoBehaviour {
 
+
     Image _img;
 
 	[SerializeField] bool isFadeIn;

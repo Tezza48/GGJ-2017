@@ -50,7 +50,7 @@ public class ControllerBehaviour : MonoBehaviour {
     void Update()
     {
         force = _captureSound.Force;
-        Debug.Log(force);
+        //Debug.Log(force);
         Raycast();
         LosingContact();
         AddVerticalForce();
@@ -124,7 +124,7 @@ public class ControllerBehaviour : MonoBehaviour {
     void Catapulte()
     {
         objectThatWillGetMoved.GetComponent<Rigidbody>().AddForce(force * Time.deltaTime * new Vector3(0f, 1f, 0f) + (objectThatWillGetMoved.transform.position - transform.position).normalized * catapulteForceMultiplier, ForceMode.Impulse);
-        print("cata");
+        //print("cata");
     }
 
     void SideMove()
@@ -133,13 +133,13 @@ public class ControllerBehaviour : MonoBehaviour {
         {
             Vector3 point = _ray.origin + (_ray.direction * dist);
 
-            Debug.Log(dist);
+            //Debug.Log(dist);
 
 
             // objectThatWillGetMoved.transform.position = new Vector3(point.x, objectThatWillGetMoved.transform.position.y, objectThatWillGetMoved.transform.position.z);
             Vector3 target = new Vector3(point.x, objectThatWillGetMoved.transform.position.y, point.z);
            // objectThatWillGetMoved.transform.position = point;
-             objectThatWillGetMoved.transform.position = Vector3.Lerp(objectThatWillGetMoved.transform.position, target, Time.deltaTime * 18f); 
+             objectThatWillGetMoved.transform.position = Vector3.Lerp(objectThatWillGetMoved.transform.position, target, Time.deltaTime * normalForceMultiplier); 
         }
     }
 

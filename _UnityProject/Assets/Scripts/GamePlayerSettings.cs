@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GamePlayerSettings : MonoBehaviour {
 
-    private int allowedLandmasses = 1;
+    private int allowedLandmasses = ~0;
 
     public int AllowedLandmasses { get { return allowedLandmasses; } }
 
@@ -17,7 +17,7 @@ public class GamePlayerSettings : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		
+        Debug.Log(allowedLandmasses);
 	}
 
     public void AllowLandmass(int landmassTag)

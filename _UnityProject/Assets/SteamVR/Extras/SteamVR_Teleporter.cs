@@ -79,6 +79,7 @@ public class SteamVR_Teleporter : MonoBehaviour
                     return;
                 }
 
+                transform.parent.parent = hitInfo.collider.transform;
 
 				dist = hitInfo.distance;
 			}

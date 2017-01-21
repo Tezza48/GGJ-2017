@@ -30,14 +30,14 @@ public class MovableObject : MonoBehaviour
     void Start()
     {
         gameObject.tag = "movable";
-        gameObject.layer = LayerMask.GetMask("movable");
+        gameObject.layer = 8;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(_rigid.IsSleeping());
+        //Debug.Log(_rigid.IsSleeping());
     }
 
     void OnTriggerEnter(Collider coll)

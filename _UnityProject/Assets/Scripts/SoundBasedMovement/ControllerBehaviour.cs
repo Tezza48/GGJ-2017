@@ -38,15 +38,6 @@ public class ControllerBehaviour : MonoBehaviour {
         layerMask = LayerMask.GetMask("movable");
     }
 
-    //void OnMouseEnter()
-    //{
-    //    if (gameObject.tag == "movable")
-    //    {
-    //        objectThatWillGetMoved = GameObject.FindGameObjectWithTag("movable");
-    //        print("asdasdas");
-    //    }
-    //}
-
     void Update()
     {
         force = _captureSound.Force;
@@ -124,7 +115,10 @@ public class ControllerBehaviour : MonoBehaviour {
     void Catapulte()
     {
         objectThatWillGetMoved.GetComponent<Rigidbody>().AddForce(force * Time.deltaTime * new Vector3(0f, 1f, 0f) + (objectThatWillGetMoved.transform.position - transform.position).normalized * catapulteForceMultiplier, ForceMode.Impulse);
+<<<<<<< HEAD
         //print("cata");
+=======
+>>>>>>> ac5ca130deb3a3e86a4994fc2b3da37c70f1f871
     }
 
     void SideMove()

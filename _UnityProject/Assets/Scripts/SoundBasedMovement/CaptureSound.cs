@@ -7,7 +7,9 @@ public class CaptureSound : MonoBehaviour {
     [SerializeField]float intesity;
     [SerializeField]float threshold = 0.85f;
     [SerializeField] FFTWindow _fftWindows;
+
     GameObject player;
+    ControllerBehaviour _ctrBehaviour;
 
     //ActiveObject
     [Header("Active Object")]
@@ -24,17 +26,20 @@ public class CaptureSound : MonoBehaviour {
 	AudioSource _audio;
     float secondsHold;
     string microphonesName;
+
     float force = 0f;
     public float Force
     {
         get{return force; }
         set { force = value;}
     }
+
     float[] spectrum = new float[256];
 
 
     void Awake()
     {
+        _ctrBehaviour = GetComponent<ControllerBehaviour>();
         _audio = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
@@ -42,7 +47,7 @@ public class CaptureSound : MonoBehaviour {
 	void Start()
 	{
         _audio.Stop();
-        _audio.clip = Microphone.Start(microphonesName, true, 10, 44100);
+        _audio.clip = Microphone.Start(microphonesName, true, 10, 22050);
         _audio.loop = true;
 
         foreach (string device in Microphone.devices)
@@ -53,6 +58,7 @@ public class CaptureSound : MonoBehaviour {
         {
             while (!(Microphone.GetPosition(microphonesName) > 0)) { }
             _audio.Play();
+            
         }
         else
         {
@@ -69,28 +75,27 @@ public class CaptureSound : MonoBehaviour {
 
     void FromSoundToForce()
     {
+        int highestI = 0;
+
         _audio.GetSpectrumData(spectrum, 0, _fftWindows);
         for (int i = 0; i < spectrum.Length; i++)
         {
-            if (spectrum[i] > threshold)
+            if (spectrum[i] > spectrum[highestI])
             {
-                //we get all intensities in spectrum
-                intesity = spectrum[i] * 100f;
-
-                //save the highest value
-                if (Force < intesity)
-                    Force = intesity;
+                highestI = i;
             }
-            else
-            {
-                //when intensity is past threshold we reset the max volumes
-                Force = 0;
-            }
-
-
         }
 
+        if (spectrum[highestI] > threshold)
+        {
+            Force = spectrum[highestI] * 100f;
+        }
+        else
+        {
+            Force = 0f;
+        }
     }
+
 
 
 

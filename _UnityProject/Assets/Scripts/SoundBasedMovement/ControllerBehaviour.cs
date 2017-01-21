@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
+
 public class ControllerBehaviour : MonoBehaviour {
+
 
     [SerializeField] CaptureSound _captureSound;
     GameObject objectThatWillGetMoved;
@@ -21,8 +24,7 @@ public class ControllerBehaviour : MonoBehaviour {
     int layerMask;
 
     [Header("Force")]
-    [SerializeField]
-    float force;
+    [SerializeField]   float force;
 
     [Header("Normal Force")]
     [SerializeField] float normalForceMultiplier;
@@ -48,10 +50,11 @@ public class ControllerBehaviour : MonoBehaviour {
     void Update()
     {
         force = _captureSound.Force;
-
+        Debug.Log(force);
         Raycast();
         LosingContact();
         AddVerticalForce();
+        SideMove();
     }
 
 
@@ -65,22 +68,19 @@ public class ControllerBehaviour : MonoBehaviour {
             {
                 objectThatWillGetMoved = _raycast.transform.gameObject;
                 dist = Vector3.Distance(objectThatWillGetMoved.transform.position, transform.position);
-                Debug.Log(dist);
                 isUsable = true;
                 isControlled = true;
                 currentTime = 0f;
-                Debug.Log("Got the object");
+               // SideMove();
             }
             else
             {
                 isControlled = false;
-                dist = 1000f;
             }
         }
         else
         {
             isControlled = false;
-            dist = 1000f;
         }
     }
 
@@ -94,6 +94,8 @@ public class ControllerBehaviour : MonoBehaviour {
                 isUsable = false;
                 currentTime = 0f;
                 objectThatWillGetMoved = null;
+                dist = 1000f;
+
             }
         }
     }
@@ -109,6 +111,7 @@ public class ControllerBehaviour : MonoBehaviour {
             else if (force > catapulteThreshold)
             {
                 Catapulte();
+                isUsable = false;
             }
         }
     }
@@ -126,7 +129,18 @@ public class ControllerBehaviour : MonoBehaviour {
 
     void SideMove()
     {
+        if (isUsable)
+        {
+            Vector3 point = _ray.origin + (_ray.direction * dist);
 
+            Debug.Log(dist);
+
+
+            // objectThatWillGetMoved.transform.position = new Vector3(point.x, objectThatWillGetMoved.transform.position.y, objectThatWillGetMoved.transform.position.z);
+            Vector3 target = new Vector3(point.x, objectThatWillGetMoved.transform.position.y, point.z);
+           // objectThatWillGetMoved.transform.position = point;
+             objectThatWillGetMoved.transform.position = Vector3.Lerp(objectThatWillGetMoved.transform.position, target, Time.deltaTime * 18f); 
+        }
     }
 
 }

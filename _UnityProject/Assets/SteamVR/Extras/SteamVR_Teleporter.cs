@@ -72,6 +72,14 @@ public class SteamVR_Teleporter : MonoBehaviour
 			{
 				RaycastHit hitInfo;
 				hasGroundTarget = Physics.Raycast(ray, out hitInfo);
+
+                Landmass lm = hitInfo.collider.GetComponent<Landmass>();
+                if (!FindObjectOfType<GamePlayerSettings>().canTeleportTo(lm.LandmassFlag))
+                {
+                    return;
+                }
+
+
 				dist = hitInfo.distance;
 			}
 			else // If we're just staying flat on the current Y axis

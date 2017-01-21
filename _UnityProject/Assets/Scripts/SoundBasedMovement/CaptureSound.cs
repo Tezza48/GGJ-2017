@@ -8,24 +8,14 @@ public class CaptureSound : MonoBehaviour {
     [SerializeField]float threshold = 0.85f;
     [SerializeField] FFTWindow _fftWindows;
 
-    GameObject player;
-    ControllerBehaviour _ctrBehaviour;
-
-    //ActiveObject
-    [Header("Active Object")]
-    [SerializeField]float normalForceMultiplier;
-    Rigidbody activeObj;
-
-    //catapulte mode
-    [Header("Catapulte Volume Level")]
-    [SerializeField]float catapulteForceMultiplier;
-    [SerializeField]float catapultVolumeLevel;
     bool isCatapulteMode;
 
     //AudioShitNooneUnderstands
 	AudioSource _audio;
     float secondsHold;
     string microphonesName;
+
+    float oldForce;
 
     float force = 0f;
     public float Force
@@ -39,9 +29,7 @@ public class CaptureSound : MonoBehaviour {
 
     void Awake()
     {
-        _ctrBehaviour = GetComponent<ControllerBehaviour>();
         _audio = GetComponent<AudioSource>();
-        player = GameObject.FindGameObjectWithTag("Player");
     }
 
 	void Start()
@@ -97,6 +85,7 @@ public class CaptureSound : MonoBehaviour {
             Force = 0f;
         }
     }
+
 
 
 

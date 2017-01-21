@@ -74,7 +74,7 @@ public class SteamVR_Teleporter : MonoBehaviour
 				hasGroundTarget = Physics.Raycast(ray, out hitInfo);
 
                 Landmass lm = hitInfo.collider.GetComponent<Landmass>();
-                if (!FindObjectOfType<GamePlayerSettings>().canTeleportTo(lm.LandmassFlag))
+                if (lm == null)
                 {
                     return;
                 }

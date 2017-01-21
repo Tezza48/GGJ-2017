@@ -123,7 +123,7 @@ public class ControllerBehaviour : MonoBehaviour {
 
     void Catapulte()
     {
-        objectThatWillGetMoved.GetComponent<Rigidbody>().AddForce(force * Time.deltaTime * new Vector3(0f, 1f, 0f) + (objectThatWillGetMoved.transform.position - transform.position).normalized * catapulteForceMultiplier);
+        objectThatWillGetMoved.GetComponent<Rigidbody>().AddForce(force * Time.deltaTime * new Vector3(0f, 1f, 0f) + (objectThatWillGetMoved.transform.position - transform.position).normalized * catapulteForceMultiplier, ForceMode.Impulse);
         print("cata");
     }
 

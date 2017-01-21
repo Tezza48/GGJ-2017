@@ -69,6 +69,8 @@ public class CaptureSound : MonoBehaviour {
 
     void Update()
     {
+        Cursor.visible = true;
+
         FromSoundToForce();
     }
 
@@ -88,7 +90,7 @@ public class CaptureSound : MonoBehaviour {
 
         if (spectrum[highestI] > threshold)
         {
-            Force = spectrum[highestI] * 100f;
+            Force = spectrum[highestI] * 1000f;
         }
         else
         {

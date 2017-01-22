@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class TriggerableObject : MonoBehaviour {
 
+    [SerializeField]
     protected bool triggered;
 
 	// Use this for initialization

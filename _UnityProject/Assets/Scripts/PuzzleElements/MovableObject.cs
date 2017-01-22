@@ -37,7 +37,8 @@ public class MovableObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(_rigid.IsSleeping());
+        if (transform.position.y < -30f)
+            gameObject.SetActive(false);
     }
 
     void OnTriggerEnter(Collider coll)

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour {
 
+    public float distance = 2;
 
     GameObject player;
     bool isActive = true;
@@ -20,7 +21,7 @@ public class SceneTransition : MonoBehaviour {
 
     void Update()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) < 0.8 && isActive)
+        if (Vector3.Distance(transform.position, player.transform.position) < distance && isActive)
         {
             fadeIn.gameObject.SetActive(true);
             isActive = false;

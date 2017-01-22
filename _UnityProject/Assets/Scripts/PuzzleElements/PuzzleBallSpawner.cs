@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class PuzzleBallSpawner : ObjectSpawn
 {
-
+    public int puzzleID;
 	// Use this for initialization
-	void Start ()
+	void Start()
     {
-		
+        myChild = Instantiate((PuzzleBall)objectToSpawn, spawnTransform, false);
+        ((PuzzleBall)myChild).PuzzleID = puzzleID;
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	new void Update ()
     {
-		
+        base.Update();
 	}
+
 }

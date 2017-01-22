@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PuzzleBall : MovableObject {
+public class PuzzleBall : MovableObject
+{
+    private int puzzleID;
 
-	// Use this for initialization
-	void Start () {
+    public int PuzzleID { get { return puzzleID; } set { puzzleID = value; } }
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -13,4 +17,12 @@ public class PuzzleBall : MovableObject {
 	void Update () {
 		
 	}
+    void OnTriggerEnter(Collider coll)
+    {
+        if (coll.tag == "deadZone")
+        {
+            print("asdasdasdasdasd");
+            gameObject.SetActive(false);
+        }
+    }
 }

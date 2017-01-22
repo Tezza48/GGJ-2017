@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TriggerableObject : MonoBehaviour {
 
-    public bool triggered;
+    protected bool triggered;
 
 	// Use this for initialization
 	void Start () {
@@ -18,7 +18,7 @@ public class TriggerableObject : MonoBehaviour {
 
 	}
 
-    public virtual void TriggerObject()
+    public void TriggerObject()
     {
         if (!triggered)
         {

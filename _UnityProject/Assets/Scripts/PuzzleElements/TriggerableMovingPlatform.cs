@@ -70,14 +70,4 @@ public class TriggerableMovingPlatform : TriggerableObject
             }
         }
     }
-
-    public override void TriggerObject()
-    {
-        if (!triggered)
-        {
-            triggered = true;
-        }
-
-    }
-
 }

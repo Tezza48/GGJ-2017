@@ -9,19 +9,19 @@ public class ObjectSpawn : MonoBehaviour
 
     [Header("Private")]
     [SerializeField]
-    private Transform spawnTransform;
+    protected Transform spawnTransform;
 
 
-    private MovableObject myChild;
+    protected MovableObject myChild;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         myChild = Instantiate<MovableObject>(objectToSpawn, spawnTransform, false);
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	public void Update ()
     {
         if (!myChild.gameObject.activeSelf)
         {

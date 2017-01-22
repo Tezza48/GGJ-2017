@@ -8,7 +8,8 @@ public class HoopForBall : MonoBehaviour
     [SerializeField]
     private TriggerableMovingPlatform platform;
 
-
+    [SerializeField]
+    private int puzzleID;
 
     // Use this for initialization
     void Start()
@@ -22,11 +23,17 @@ public class HoopForBall : MonoBehaviour
 
     }
 
-    public void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        //if ()
-        //{
-
-        //}
+        {
+            PuzzleBall ball = other.GetComponent<PuzzleBall>();
+            if (ball != null)
+            {
+                if (ball.PuzzleID == puzzleID)
+                {
+                    platform.TriggerObject();
+                }
+            }
+        }
     }
 }
